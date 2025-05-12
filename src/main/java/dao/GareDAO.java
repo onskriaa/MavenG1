@@ -1,46 +1,48 @@
 package dao;
 
-import model.Trajet;
+import model.Gare;
 import org.hibernate.*;
 import util.HibernateUtil;
+
 import java.util.List;
 
-public class TrajetDAO {
-    public void ajouterTrajet(Trajet t) {
+public class GareDAO {
+
+    public void ajouterGare(Gare g) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
-        session.save(t);
+        session.save(g);
         tx.commit();
         session.close();
     }
 
-    public void modifierTrajet(Trajet t) {
+    public void modifierGare(Gare g) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
-        session.update(t);
+        session.update(g);
         tx.commit();
         session.close();
     }
 
-    public void supprimerTrajet(int id) {
+    public void supprimerGare(int id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
-        Trajet t = session.get(Trajet.class, id);
-        if (t != null) session.delete(t);
+        Gare g = session.get(Gare.class, id);
+        if (g != null) session.delete(g);
         tx.commit();
         session.close();
     }
 
-    public Trajet getTrajetById(int id) {
+    public Gare getGareById(int id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
-        Trajet t = session.get(Trajet.class, id);
+        Gare g = session.get(Gare.class, id);
         session.close();
-        return t;
+        return g;
     }
 
-    public List<Trajet> getAllTrajets() {
+    public List<Gare> getAllGares() {
         Session session = HibernateUtil.getSessionFactory().openSession();
-        List<Trajet> liste = session.createQuery("from Trajet", Trajet.class).list();
+        List<Gare> liste = session.createQuery("from Gare", Gare.class).list();
         session.close();
         return liste;
     }

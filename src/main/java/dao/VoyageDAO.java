@@ -1,46 +1,47 @@
 package dao;
 
-import model.Trajet;
+import model.Voyage;
 import org.hibernate.*;
 import util.HibernateUtil;
 import java.util.List;
 
-public class TrajetDAO {
-    public void ajouterTrajet(Trajet t) {
+public class VoyageDAO {
+
+    public void ajouterVoyage(Voyage v) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
-        session.save(t);
+        session.save(v);
         tx.commit();
         session.close();
     }
 
-    public void modifierTrajet(Trajet t) {
+    public void modifierVoyage(Voyage v) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
-        session.update(t);
+        session.update(v);
         tx.commit();
         session.close();
     }
 
-    public void supprimerTrajet(int id) {
+    public void supprimerVoyage(int id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
-        Trajet t = session.get(Trajet.class, id);
-        if (t != null) session.delete(t);
+        Voyage v = session.get(Voyage.class, id);
+        if (v != null) session.delete(v);
         tx.commit();
         session.close();
     }
 
-    public Trajet getTrajetById(int id) {
+    public Voyage getVoyageById(int id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
-        Trajet t = session.get(Trajet.class, id);
+        Voyage v = session.get(Voyage.class, id);
         session.close();
-        return t;
+        return v;
     }
 
-    public List<Trajet> getAllTrajets() {
+    public List<Voyage> getAllVoyages() {
         Session session = HibernateUtil.getSessionFactory().openSession();
-        List<Trajet> liste = session.createQuery("from Trajet", Trajet.class).list();
+        List<Voyage> liste = session.createQuery("from Voyage", Voyage.class).list();
         session.close();
         return liste;
     }
