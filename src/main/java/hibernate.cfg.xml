@@ -1,27 +1,30 @@
-<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<!DOCTYPE hibernate-configuration PUBLIC 
+    "-//Hibernate/Hibernate Configuration DTD 3.0//EN" 
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
 <hibernate-configuration>
     <session-factory>
-        <!-- Database connection settings -->
+
+        <!-- ✅ Connexion à MySQL (sans mot de passe) -->
         <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/dbuser?useSSL=false</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/dbuser?useSSL=false&amp;serverTimezone=UTC</property>
         <property name="hibernate.connection.username">root</property>
-     	<property name="hibernate.connection.password"/>
-     
-        
-        <!-- JDBC connection pool settings -->
+        <property name="hibernate.connection.password"></property>
+
+        <!-- ✅ Pool de connexions -->
         <property name="hibernate.connection.pool_size">5</property>
-        
-        <!-- SQL dialect -->
+
+        <!-- ✅ Dialecte MySQL -->
         <property name="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</property>
-        
-        <!-- Echo all executed SQL to stdout -->
+
+        <!-- ✅ Affichage des requêtes -->
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.format_sql">true</property>
-        
-        <!-- Automatic schema update -->
+
+        <!-- ✅ Mise à jour automatique du schéma -->
         <property name="hibernate.hbm2ddl.auto">update</property>
-        
-        <!-- Entity mappings -->
+
+        <!-- ✅ Mappage des entités -->
         <mapping class="model.Trajet"/>
         <mapping class="model.Arret"/>
         <mapping class="model.Gare"/>
@@ -29,8 +32,6 @@
         <mapping class="model.Admin"/>
         <mapping class="model.Utilisateur"/>
         <mapping class="model.Billet"/>
-        
-        
-        
+
     </session-factory>
 </hibernate-configuration>
